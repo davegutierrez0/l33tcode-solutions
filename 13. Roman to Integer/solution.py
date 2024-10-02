@@ -21,9 +21,6 @@ class Solution:
             else:
                 total -= currentValue
 
-
-
-                    
                                 
         return total
 
