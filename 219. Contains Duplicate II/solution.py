@@ -30,3 +30,5 @@ if __name__ == "__main__":
     print(solution.containsNearbyDuplicate(nums = [1,2,3,1,2,3], k = 2))
 
     
+# Time Complexity O(n^2)
+# Space Complexity O(1)
