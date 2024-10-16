@@ -16,5 +16,5 @@ if __name__ == "__main__":
     print(solution.hIndex(citations = [3,0,6,1,5]))    
     print(solution.hIndex(citations = [1,3,1]))
     
-# Time Complexity: O(n)
+# Time Complexity: O(n^2)
 # Space Complexity: O(1)
