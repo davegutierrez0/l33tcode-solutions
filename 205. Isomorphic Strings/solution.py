@@ -2,20 +2,23 @@ class Solution:
     def isIsomorphic(self, s: str, t: str) -> bool:
         
         iso_map = {}
+        mapped_characters = set()
         
         for idx in range(len(s)):
-            if s[idx] not in iso_map.keys() and t[idx] not in iso_map.values():
+            if s[idx] in iso_map:
+                if iso_map[s[idx]] != t[idx]:
+                    return False
+            
+            else:
+                if t[idx] in mapped_characters:
+                    return False
                 iso_map[s[idx]] = t[idx]
+                mapped_characters.add(t[idx])
+                
             
-        print(iso_map)
-        
-        t_reproduced = ''
-        
-        for char in s:
-            if char in iso_map.keys():
-                t_reproduced += iso_map[char]
-            
-        return True if t_reproduced == t else False
+        # print(iso_map)
+
+        return True
 
 
 # Test cases
@@ -28,4 +31,4 @@ if __name__ == "__main__":
 
 
 # Time Complexity: O(n)
-# Space Complexity: O(1)
+# Space Complexity: O(n)
