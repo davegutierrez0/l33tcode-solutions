@@ -1,14 +1,19 @@
-class Solution(object):
+class Solution:
     def nextGreatestLetter(self, letters, target):
         """
         :type letters: List[str]
         :type target: str
         :rtype: str
         """
-        target_number = ord(target) + 1
+        left = 0
+        right = len(letters)
 
-        for letter in letters:
-            if ord(letter) + 1 > target_number:
-                return letter
+        while left < right:
+            mid = (left + right ) // 2
 
-        return letters[0]
+            if letters[mid] > target:
+                right = mid
+            else:
+                left = mid + 1
+
+        return letters[left] if left < len(letters) else letters[0]
