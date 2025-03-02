@@ -4,17 +4,18 @@ class Solution:
         if len(cost) == 2:
             return min(cost)
 
-        minimumCost = [0] * (len(cost) + 1)
-        print(minimumCost)
-
         # Must surprass the end of the index to 
         # 'reach the top'
-        for i in range(2,len(minimumCost)):
-            minimumCost[i] = min(minimumCost[i-1]+cost[i-1],minimumCost[i-2]+cost[i-2])
+
+        previous, current = 0,0
+
+        for i in range(2,len(cost)+1):
+            next_step = min(previous + cost[i-2], current + cost[i-1])
+            previous, current = current, next_step
 
 
-        return minimumCost[-1]
+        return next_step
 
 
         # Time Complexity: O(n)
-        # Space Complexity: O(n)
+        # Space Complexity: O(1)
