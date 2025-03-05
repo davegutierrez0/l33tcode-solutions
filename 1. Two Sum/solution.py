@@ -1,15 +1,16 @@
-from typing import List
-
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        i = 0
+        hash_map = {}
+       
+        for i in range(len(nums)):
 
-        while i < len(nums) - 1:
-            firstNumber = nums[i]
-            secondNumber = target - firstNumber
+            complement = target - nums[i]
 
-            if secondNumber in nums[i+1:]:
-                return [i] + [nums[i+1:].index(secondNumber)+(i+1)]
+            if complement in hash_map:
+                return [i, hash_map[complement]]
             
-            else:
-                i +=1
+            hash_map[nums[i]] = i
+
+        # No complement case
+        return []
+
