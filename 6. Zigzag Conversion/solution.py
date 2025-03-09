@@ -49,3 +49,7 @@ class Solution:
             result += ''.join(char for char in row if char)
             
         return result
+
+
+        # Time complexity: O(numRows * n)
+        # Space complexity: O(n)
