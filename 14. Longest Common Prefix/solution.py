@@ -1,21 +1,17 @@
 class Solution:
     def longestCommonPrefix(self, strs: List[str]) -> str:
         
-        if len(strs) == 1: return strs[0]
+        if not strs: return ''
 
-        common_prefix = ''
+        shortest = min(strs, key=len)
 
-        i = 0 
-        
-        # Iterate through letters of first word 
-        while i < len(strs[0]):
-            common_prefix += strs[0][i]
-            for word in strs:
-                if not word.startswith(common_prefix):
-                    return common_prefix[:len(common_prefix)-1]
+        for i, char in enumerate(shortest):
+            for str in strs: 
+                if str[i] != char:
+                    return shortest[:i]
 
-            i += 1
-        return common_prefix
+
+        return shortest
 
 # Time complexity: O(n*m) where n is the number of words and m is the length of the shortest word
-# Space complexity: O(m) where m is the length of the shortest word
+# Space complexity: O(1) since we are not using any extra space (previous version was actually (O(m*2) due to string concatenation)
