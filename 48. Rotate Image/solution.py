@@ -9,7 +9,11 @@ class Solution:
         
 
     def transpose(self,matrix: List[List[int]])-> None:
-        matrix[:] = map(list,zip(*matrix))
+        n = len(matrix)
+
+        for i in range(n):
+            for j in range(i+1,n):
+                matrix[i][j], matrix[j][i] = matrix[j][i], matrix[i][j]
 
     def reflect(self, matrix: List[List[int]])-> None:
         n = len(matrix)
@@ -17,7 +21,8 @@ class Solution:
         for i in range(n): 
             for j in range(n//2):
                 matrix[i][j], matrix[i][-j-1] = matrix[i][-j-1], matrix[i][j]
+                matrix[i][j], matrix[i][-j-1] = matrix[i][-j-1], matrix[i][j]
                 
 # Time complexity: O(N^2)
-# Space complexity: O(N^2)
+# Space complexity: O(1)
 ```
