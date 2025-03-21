@@ -1,15 +1,18 @@
 class Solution:
     def lengthOfLIS(self, nums: List[int]) -> int:
-        n = len(nums)
-        dp = [1] * n
-
-
-        for i in range(1,n):
-            for j in range(0,i):
-                if nums[j] < nums[i]:
-                    dp[i] = max(dp[i], dp[j]+1)
+        subsequence = [nums[0]]
         
-        return max(dp)
+        for i in range(1,len(nums)):
+            if nums[i] > subsequence[-1]:
+                subsequence.append(nums[i])
+            else:
+                j = 0
+                while nums[i] > subsequence[j]:
+                    j += 1
+                subsequence[j] = nums[i]
+                        
+
+        return len(subsequence)
 
 # Time Complexity: O(N^2)
 # Space Complexity: O(N)
