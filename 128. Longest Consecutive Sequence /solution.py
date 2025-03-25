@@ -3,23 +3,24 @@ class Solution:
         if not nums:
             return 0
 
-        nums_sorted = sorted(nums)
+        nums_set = set(nums)
 
         max_streak = 1
-        current_streak = 1
 
-        for i in range(1,len(nums_sorted)):
+        for num in nums_set:
 
-            if nums_sorted[i] == nums_sorted[i-1] + 1:
-                current_streak += 1
-                max_streak = max(current_streak, max_streak)
-            elif nums_sorted[i] == nums_sorted[i-1]:
-                pass
-            else:
+            if num - 1 not in nums_set:
+                current_num = num
                 current_streak = 1
+
+                while current_num + 1 in nums_set:
+                    current_num += 1
+                    current_streak += 1
+                max_streak = max(current_streak, max_streak)
+
             
 
         return max_streak
 
-# Time Complexity: O(N log N) — due to sorting
-# Space Complexity: O(N) — for storing the sorted list
+# Time Complexity: O(N)
+# Space Complexity: O(N)
