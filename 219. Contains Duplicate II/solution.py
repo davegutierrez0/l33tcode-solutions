@@ -2,23 +2,15 @@ from typing import List
 
 class Solution:
     def containsNearbyDuplicate(self, nums: List[int], k: int) -> bool:
-        i = 0
         
-        
-        while i < len(nums) - 1:
-            # print("i:",i)   
-            # print("count: ",nums.count(nums[i]))
-            
-            if nums[i] in nums[i + 1:i + 2 + k]:
-                for j in range(i + 1,i + 2 + k):
-                    
-                    # print("j:",j)
-                    if j < len(nums) and nums[i]== nums[j] and (abs(i - j) <= k):
-                        return True
-        
-            i += 1
+        nums_dict = {}
 
-            
+        for i in range(len(nums)):
+            if nums[i] in nums_dict and abs(nums_dict[nums[i]] - i) <= k:
+                return True
+
+            nums_dict[nums[i]] = i
+
         return False
         
 
@@ -30,5 +22,8 @@ if __name__ == "__main__":
     print(solution.containsNearbyDuplicate(nums = [1,2,3,1,2,3], k = 2))
 
     
-# Time Complexity O(n^2)
-# Space Complexity O(1)
+# Time Complexity: O(N)
+# Space Complexity: O(N)
+
+# “If I’ve seen this number before, and it’s not too far back, return True.
+# Otherwise, update its last-seen location.”
