@@ -1,23 +1,33 @@
-import re
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        sFiltered = re.sub(r'[^a-zA-Z0-9]','',s).lower()
-        # print("Alphanumeric string: ",sFiltered)
-        
-        if sFiltered == "":
+        if not s:
             return True
-    
-        # Python's [::-1] shorthand reverses the string or list
-        return True if sFiltered[::-1] in sFiltered else False
-        
-                 
-        
-        
 
-# Test case
-if __name__ == "__main__":
-    solution = Solution()
-    print(solution.isPalindrome(s = "A man, a plan, a canal: Panama"))
-    print(solution.isPalindrome(s = "race a car"))
-    print(solution.isPalindrome(s = "racecar"))
-    
+
+        left = 0 
+        right = len(s) - 1
+
+        while left < right:
+            while left < right and not s[left].isalnum():
+                left += 1
+            while left < right and not s[right].isalnum():
+                right -= 1
+
+            if s[left].lower() != s[right].lower():
+                return False
+
+
+            left += 1
+            right -= 1
+
+        return True
+
+
+# Time Complexity: O(N)
+# Space Complexity: O(1)
+
+# 🧠 #TwoPointerCleanCompare
+# ⬅️➡️ Start at both ends
+# 🧼 Skip non-alphanum with while loops
+# 🔡 Compare lowercased letters
+# 🚶‍♂️🚶‍♀️ Move inward
