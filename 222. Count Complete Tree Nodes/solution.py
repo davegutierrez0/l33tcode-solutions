@@ -11,6 +11,6 @@ class Solution:
 
         return 1 + self.countNodes(root.left) + self.countNodes(root.right)
 
-# 🧮 RLR Count: Root + Left + Right
+# 🌲 RLR Count: 1 (Self) + Left + Right
 # Time Complexity: O(N)
 # Space Complexity: O(H)
