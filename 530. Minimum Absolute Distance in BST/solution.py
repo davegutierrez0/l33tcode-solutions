@@ -47,3 +47,36 @@ class Solution:
 # 🧠 Simple, but misses BST's power
 
 
+
+# Definition for a binary tree node.
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def getMinimumDifference(self, root: Optional[TreeNode]) -> int:
+        self.prev = None
+        self.min_difference = float('inf')
+
+        def traverse(node):
+            if not node:
+                return None
+
+
+            traverse(node.left)
+                        
+            if self.prev is not None:
+                self.min_difference = min(self.min_difference, node.val - self.prev)
+            self.prev = node.val
+
+            traverse(node.right)
+
+        traverse(root)
+        return self.min_difference
+
+# Time Complexity: O(N)  # Visit each node exactly once
+# Space Complexity: O(H)  # H = tree height (log N for balanced, N for skewed)# 📜 Traverse left ➝ check min ➝ go right
+# 🔁 In-order = sorted
+# 🔍 Compare only neighbors
+# 🧠 prev + current = min diff magic
